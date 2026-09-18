@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Second Tour — Faites revenir vos clients pour leur prochain entretien</title>
+<meta name="description" content="Second Tour relance automatiquement vos clients quand leur prochain entretien arrive. Pour les garages indépendants. Accès fondateur 39 €/mois.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bleu:#11324D;
+  --bleu-fonce:#0B2135;
+  --jaune:#F5C518;
+  --papier:#F5F5F2;
+  --beton:#D9D9D2;
+  --encre:#101416;
+  --texte:#40474D;
+  --surface:#FFFFFF;
+  --trait:#C9C9C1;
+  --display:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --corps:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --papier:#0E171F;
+    --surface:#15222D;
+    --encre:#F2F4F3;
+    --texte:#B3BEC6;
+    --beton:#22323F;
+    --trait:#2C3E4C;
+    --bleu:#D8E4EE;
+    --bleu-fonce:#0A141C;
+  }
+}
+:root[data-theme="dark"]{
+  --papier:#0E171F;
+  --surface:#15222D;
+  --encre:#F2F4F3;
+  --texte:#B3BEC6;
+  --beton:#22323F;
+  --trait:#2C3E4C;
+  --bleu:#D8E4EE;
+  --bleu-fonce:#0A141C;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--papier);
+  color:var(--texte);
+  font-family:var(--corps);
+  font-size:17px;
+  line-height:1.65;
+}
+img{max-width:100%}
+.wrap{width:100%;max-width:1060px;margin:0 auto;padding:0 24px}
+
+h1,h2,h3,.chiffre{font-family:var(--display);color:var(--encre);margin:0}
+h1{
+  font-weight:800;
+  font-size:clamp(2.35rem,6.4vw,4.1rem);
+  line-height:1.02;
+  letter-spacing:-0.035em;
+}
+h2{
+  font-weight:800;
+  font-size:clamp(1.65rem,3.6vw,2.4rem);
+  line-height:1.1;
+  letter-spacing:-0.028em;
+  margin-bottom:.6rem;
+}
+h3{font-weight:600;font-size:1.12rem;line-height:1.3;letter-spacing:-0.012em;margin-bottom:.35rem}
+p{margin:0 0 1rem}
+p.lead{font-size:1.16rem;max-width:34em}
+.mesure{max-width:36em}
+
+/* ---------- barre ---------- */
+.barre{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 0 18px;
+}
+.marque{
+  font-family:var(--display);font-weight:800;letter-spacing:-0.03em;
+  font-size:1.16rem;color:var(--encre);text-decoration:none;
+}
+.marque span{color:var(--jaune)}
+.statut{
+  font-size:.83rem;color:var(--texte);
+  border:1px solid var(--trait);padding:5px 11px;border-radius:999px;
+}
+
+/* ---------- hero ---------- */
+.hero{padding:34px 0 64px}
+.hero-grille{display:grid;grid-template-columns:1fr;gap:46px;align-items:center}
+@media(min-width:900px){.hero-grille{grid-template-columns:1.08fr .92fr;gap:56px}}
+.hero p.lead{margin-top:1.15rem}
+
+.bouton{
+  display:inline-block;
+  background:var(--jaune);color:#101416;
+  font-family:var(--display);font-weight:600;font-size:1.04rem;letter-spacing:-0.01em;
+  text-decoration:none;
+  padding:15px 26px;border-radius:4px;
+  border:1px solid #D9AE10;
+  box-shadow:0 1px 0 #B8930C;
+}
+.bouton:hover{background:#FFD22E}
+.bouton:focus-visible{outline:3px solid var(--bleu);outline-offset:3px}
+.sous-bouton{font-size:.92rem;margin-top:.8rem;max-width:30em}
+
+/* ---------- vignette pare-brise ---------- */
+.vitre{
+  background:
+    linear-gradient(150deg,rgba(255,255,255,.28),rgba(255,255,255,0) 58%),
+    var(--beton);
+  border-radius:8px;
+  padding:34px 22px;
+  display:flex;justify-content:center;
+}
+.vignette{
+  width:100%;max-width:290px;
+  background:var(--jaune);
+  color:#101416;
+  border-radius:6px;
+  padding:18px 18px 16px;
+  transform:rotate(-2.4deg);
+  box-shadow:0 8px 22px rgba(16,20,22,.22);
+}
+.vignette .entete{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--display);font-weight:600;font-size:.82rem;
+  padding-bottom:9px;border-bottom:1.5px solid rgba(16,20,22,.28);
+}
+.vignette .ligne{
+  display:flex;justify-content:space-between;gap:10px;
+  font-size:.88rem;padding:7px 0;color:#2A2B26;
+  border-bottom:1px dashed rgba(16,20,22,.22);
+}
+.vignette .ligne b{font-family:var(--display);font-weight:600;color:#101416}
+.vignette .pied{
+  margin-top:11px;font-size:.8rem;line-height:1.4;color:#2A2B26;
+}
+.vignette .pied strong{color:#101416}
+
+/* ---------- sections ---------- */
+section{padding:56px 0}
+.rule{border:0;border-top:1px solid var(--trait);margin:0}
+
+/* calcul */
+.calcul{
+  background:var(--surface);
+  border:1px solid var(--trait);
+  border-radius:6px;
+  padding:26px 24px;
+  margin-top:24px;
+  max-width:520px;
+}
+.calcul .ligne{
+  display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding:9px 0;border-bottom:1px solid var(--trait);
+}
+.calcul .ligne:last-of-type{border-bottom:0}
+.calcul .ligne span{font-size:.97rem}
+.calcul .ligne b{font-family:var(--display);font-weight:600;font-variant-numeric:tabular-nums;color:var(--encre);font-size:1.02rem}
+.total{
+  margin-top:14px;padding-top:16px;border-top:2px solid var(--encre);
+  display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+}
+.total span{font-family:var(--display);font-weight:600;color:var(--encre)}
+.chiffre{font-weight:800;font-size:2.15rem;letter-spacing:-0.03em;font-variant-numeric:tabular-nums;color:var(--encre)}
+.note{font-size:.9rem;margin-top:12px}
+
+/* étapes : c'est une vraie séquence */
+ol.etapes{list-style:none;margin:28px 0 0;padding:0;counter-reset:e}
+ol.etapes li{
+  counter-increment:e;
+  display:grid;grid-template-columns:38px 1fr;gap:16px;
+  padding:18px 0;border-top:1px solid var(--trait);
+}
+ol.etapes li:last-child{border-bottom:1px solid var(--trait)}
+ol.etapes li::before{
+  content:counter(e);
+  font-family:var(--display);font-weight:800;font-size:1.2rem;
+  color:var(--encre);
+  border-bottom:3px solid var(--jaune);
+  height:fit-content;line-height:1.2;
+}
+ol.etapes p{margin:0;max-width:44em}
+
+/* bénéfices */
+.benefices{display:grid;grid-template-columns:1fr;gap:30px;margin-top:28px}
+@media(min-width:760px){.benefices{grid-template-columns:repeat(3,1fr);gap:34px}}
+.benefices > div{border-top:3px solid var(--bleu);padding-top:14px}
+.benefices p{margin:0;font-size:.99rem}
+
+/* offre */
+.offre{background:var(--bleu-fonce);color:#C7D5E0}
+.offre h2,.offre .prix{color:#FFFFFF}
+.offre .encart{
+  display:grid;grid-template-columns:1fr;gap:30px;align-items:start;
+}
+@media(min-width:820px){.offre .encart{grid-template-columns:1fr 1fr;gap:54px}}
+.prix{font-family:var(--display);font-weight:800;font-size:3.1rem;letter-spacing:-0.035em;line-height:1;font-variant-numeric:tabular-nums}
+.prix small{font-family:var(--corps);font-weight:400;font-size:1rem;letter-spacing:0;color:#A8BCCC}
+.liste{list-style:none;margin:20px 0 26px;padding:0}
+.liste li{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:.99rem}
+.liste li:last-child{border-bottom:0}
+.offre .bouton{width:100%;text-align:center}
+@media(min-width:520px){.offre .bouton{width:auto}}
+.offre .sous-bouton{color:#A8BCCC}
+
+/* franchise */
+.franchise dt{font-family:var(--display);font-weight:600;color:var(--encre);margin-top:20px}
+.franchise dd{margin:.3rem 0 0;max-width:40em}
+
+footer{padding:34px 0 46px;font-size:.9rem;border-top:1px solid var(--trait)}
+footer a{color:var(--texte)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="barre">
+    <a class="marque" href="#">Second Tour<span>.</span></a>
+    <span class="statut">En lancement — 10 places fondateur</span>
+  </header>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-grille">
+      <div>
+        <h1>Faites revenir vos clients pour leur prochain entretien.</h1>
+        <p class="lead">Vous notez le client au moment de la facture. Second Tour lui envoie le rappel tout seul, au bon moment, des mois plus tard. Vous n'avez plus rien à penser.</p>
+        <a class="bouton" href="#offre">Prendre une place fondateur</a>
+        <p class="sous-bouton">39 €/mois au lieu de 49 €. Rien n'est prélevé avant le lancement du produit.</p>
+      </div>
+      <div class="vitre">
+        <div class="vignette">
+          <div class="entete"><span>Prochain entretien</span><span>ST</span></div>
+          <div class="ligne"><span>Client</span><b>M. Lemoine</b></div>
+          <div class="ligne"><span>Véhicule</span><b>Clio IV — AB-320-CD</b></div>
+          <div class="ligne"><span>Vidange faite le</span><b>14/03</b></div>
+          <div class="ligne"><span>Rappel envoyé le</span><b>14/03 +12 mois</b></div>
+          <p class="pied"><strong>C'est ce petit autocollant que vous collez sur le pare-brise.</strong> Sauf que celui-ci envoie l'email à votre place.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <h2>Le client qui ne revient pas n'est presque jamais un client mécontent.</h2>
+    <p class="mesure">Il a simplement oublié. Son voyant s'allumera dans huit mois, il cherchera un garage sur son téléphone, et il ira chez celui qui apparaît. Faites le compte sur votre année :</p>
+
+    <div class="calcul">
+      <div class="ligne"><span>Véhicules passés à l'atelier cette année</span><b>400</b></div>
+      <div class="ligne"><span>Ceux que vous n'avez pas revus l'année suivante</span><b>30</b></div>
+      <div class="ligne"><span>Panier moyen d'un entretien</span><b>180 €</b></div>
+      <div class="total">
+        <span>Parti chez le garage d'à côté</span>
+        <span class="chiffre">5 400 €</span>
+      </div>
+      <p class="note">Remplacez ces trois chiffres par les vôtres. Le résultat reste dans le même ordre de grandeur, et il tombe chaque année.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <h2>Trois gestes, et c'est réglé</h2>
+    <ol class="etapes">
+      <li><div><h3>Vous notez le client en sortant la facture</h3><p>Prénom, email, véhicule, ce que vous avez fait. Vingt secondes, une fois. Vous pouvez aussi ne rien saisir et nous envoyer votre fichier, on s'en occupe.</p></div></li>
+      <li><div><h3>Second Tour attend le bon moment</h3><p>Douze mois pour une révision, six pour une vidange courte, avant l'hiver pour les pneus. Vous choisissez le délai une fois par type d'intervention, ensuite ça roule.</p></div></li>
+      <li><div><h3>Le rappel part, le client répond</h3><p>Un email court, à votre nom, qui lui dit que son entretien arrive. Il vous répond ou il appelle. Si vous le souhaitez, vous pouvez y joindre une offre de retour.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <h2>Ce que ça change à l'atelier</h2>
+    <div class="benefices">
+      <div>
+        <h3>Plus personne à relancer</h3>
+        <p>Pas de fichier à tenir, pas de rappel à noter dans l'agenda, pas de soirée passée à téléphoner. Le système s'en souvient à votre place.</p>
+      </div>
+      <div>
+        <h3>Un atelier moins creux</h3>
+        <p>Les rappels tombent toute l'année, pas en même temps. Vous remplissez les semaines vides au lieu de subir les mois calmes.</p>
+      </div>
+      <div>
+        <h3>Vous voyez ce que ça rapporte</h3>
+        <p>Clients relancés, rendez-vous récupérés, chiffre d'affaires généré par les rappels. Si le compteur ne bouge pas, vous arrêtez.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="offre" id="offre">
+  <div class="wrap">
+    <div class="encart">
+      <div>
+        <h2>Accès fondateur</h2>
+        <p>Les dix premiers garages gardent ce tarif aussi longtemps qu'ils restent abonnés. Ensuite, le prix passe à 49 €/mois.</p>
+        <div class="prix">39 €<small> / mois</small></div>
+        <ul class="liste">
+          <li>Rien n'est prélevé aujourd'hui. Le premier mois est facturé au lancement du produit.</li>
+          <li>Résiliable en un clic, à tout moment, sans motif.</li>
+          <li>Rappels illimités, un seul atelier.</li>
+          <li>Vous me dites ce qui manque, je le construis en premier.</li>
+        </ul>
+        <a class="bouton" href="https://buy.stripe.com/test_5kQeVg1rA7ht6MRdFx2go00">Prendre une place fondateur</a>
+        <p class="sous-bouton">Paiement sécurisé par Stripe. Vous recevrez un email de confirmation.</p>
+      </div>
+      <div>
+        <h3 style="color:#fff">Pourquoi ce prix</h3>
+        <p>Un seul client récupéré dans l'année paie l'abonnement pendant plus de quatre mois. Deux, et l'outil est rentable sur douze mois. C'est le calcul que je vous demande de faire avant de vous engager.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Ce que vous achetez exactement</h2>
+    <dl class="franchise">
+      <dt>Le produit est-il déjà en ligne ?</dt>
+      <dd>Non, et je préfère vous le dire franchement. Second Tour est en construction. Vous réservez une place et un tarif, vous n'êtes pas prélevé avant que l'outil fonctionne.</dd>
+      <dt>Et si je change d'avis avant le lancement ?</dt>
+      <dd>Vous annulez et aucun euro n'est débité. Vous ne risquez rien à réserver aujourd'hui.</dd>
+      <dt>Est-ce que ça remplace mon logiciel de garage ?</dt>
+      <dd>Non. Second Tour ne fait qu'une chose : relancer vos clients au bon moment. Il vit à côté de vos outils, pas à leur place.</dd>
+      <dt>Et mes clients, on leur envoie de la publicité ?</dt>
+      <dd>Un rappel d'entretien, à votre nom, avec un lien de désinscription. Rien d'autre. Vos fichiers restent les vôtres et ne sont jamais revendus.</dd>
+    </dl>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    Second Tour — le rappel qui fait revenir les clients.<br>
+    Une question avant de vous décider : <a href="mailto:applyforge.store@gmail.com">applyforge.store@gmail.com</a>
+  </footer>
+</div>
+
+</body>
+</html>
