@@ -5,6 +5,12 @@ export const loginSchema = z.object({
   password: z.string().min(8).max(128),
 });
 
+export const signupSchema = z.object({
+  garageName: z.string().trim().min(2).max(120),
+  email: z.string().trim().email().max(254).transform((v) => v.toLowerCase()),
+  password: z.string().min(12).max(128),
+});
+
 export const clientSchema = z.object({
   firstName: z.string().trim().min(1).max(80),
   lastName: z.string().trim().max(80).default(""),
