@@ -12,10 +12,10 @@ export default function Home() {
         <h1>Vos clients reviennent au bon moment.</h1>
         <p>Second Tour prépare et envoie les rappels d’entretien aux clients qui ont donné leur accord. Votre garage garde la main sur les dates, le message et l’historique.</p>
         <div className="hero-actions">
-          <a className="button" href="https://buy.stripe.com/8x2fZkc6e9xrbU4cph1Fe00" target="_blank" rel="noopener noreferrer">Accès fondateur · 39 €/mois</a>
+          <Link className="button" href="/inscription">Essayer gratuitement pendant 30 jours</Link>
           <Link className="button secondary" href="/login">Ouvrir mon espace</Link>
         </div>
-        <p className="muted">Sans engagement. Mise en place accompagnée. Aucun message n’est envoyé sans consentement enregistré.</p>
+        <p className="muted">30 jours gratuits, puis 39 €/mois sans engagement. Aucun message n’est envoyé sans consentement enregistré.</p>
       </div>
       <div className="preview-card" aria-label="Aperçu du tableau de bord">
         <small>Cette semaine</small>
