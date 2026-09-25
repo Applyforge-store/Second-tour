@@ -64,6 +64,20 @@ export async function requireSession() {
 export async function requireGarageAdmin() {
   const session = await requireSession();
   if (session.role !== "GARAGE_ADMIN" || !session.garageId) redirect("/admin/garages");
+
+  const [garage] = await sql<{ subscription_status: string; trial_ends_at: Date | null }[]>`
+    SELECT subscription_status, trial_ends_at
+    FROM garages
+    WHERE id=${session.garageId}
+    LIMIT 1
+  `;
+
+  const trialValid =
+    garage?.subscription_status === "TRIALING" &&
+    garage.trial_ends_at &&
+    new Date(garage.trial_ends_at).getTime() > Date.now();
+
+  if (garage?.subscription_status !== "ACTIVE" && !trialValid) redirect("/abonnement");
   return session as SessionUser & { garageId: string };
 }
 
