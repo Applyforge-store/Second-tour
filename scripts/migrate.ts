@@ -8,8 +8,12 @@ async function main() {
   if (!databaseUrl) throw new Error("DATABASE_URL manque.");
   const sql = postgres(databaseUrl, { ssl: "require", max: 1, prepare: false });
   try {
-    const migration = await fs.readFile(path.join(process.cwd(), "db", "001_initial.sql"), "utf8");
-    await sql.unsafe(migration);
+    const dbDir = path.join(process.cwd(), "db");
+    const migrations = (await fs.readdir(dbDir)).filter((name) => name.endsWith(".sql")).sort();
+    for (const file of migrations) {
+      const migration = await fs.readFile(path.join(dbDir, file), "utf8");
+      await sql.unsafe(migration);
+    }
 
     const [{ count }] = await sql<{ count: number }[]>`SELECT count(*)::int AS count FROM users`;
     if (count === 0) {
